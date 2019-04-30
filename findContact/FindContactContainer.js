@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Button, omitProps } from '@folio/stripes/components';
 import className from 'classnames';
 import { FormattedMessage } from 'react-intl';
+import { noop } from 'lodash';
 
 import FindContactModal from './FindContactModal';
 
@@ -12,7 +13,7 @@ class FindContactContainer extends React.Component {
   constructor(props) {
     super(props);
 
-    this.connectedFindContactModal = props.stripes.connect(FindContactModal);
+    this.connectedFindContactModal = props.stripes.connect(FindContactModal, { dataKey: this.props.dataKey });
   }
 
   state = {
@@ -43,6 +44,7 @@ class FindContactContainer extends React.Component {
     return (
       <div className={this.getStyle()}>
         <Button
+          data-test-plugin-find-contact-button
           buttonStyle={searchButtonStyle}
           data-test-add-contact
           disabled={disabled}
@@ -70,6 +72,7 @@ FindContactContainer.defaultProps = {
   marginTop0: true,
   searchButtonStyle: 'primary',
   searchLabel: <FormattedMessage id="ui-plugin-find-contact.button.addContact" />,
+  addContacts: noop,
 };
 
 FindContactContainer.propTypes = {
@@ -79,6 +82,8 @@ FindContactContainer.propTypes = {
   searchButtonStyle: PropTypes.string,
   searchLabel: PropTypes.node,
   stripes: PropTypes.object,
+  dataKey: PropTypes.string.isRequired,
+  addContacts: PropTypes.func,
 };
 
 export default FindContactContainer;
