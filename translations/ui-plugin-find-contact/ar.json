@@ -1,4 +1,10 @@
 {
     "button.addContact": "إضافة جهة اتصال",
-    "meta.title": "إضافة (تعيين) 'جهة اتصال' إلى مؤسسة (برنامج مساعد)"
+    "meta.title": "إضافة (تعيين) 'جهة اتصال' إلى مؤسسة (برنامج مساعد)",
+    "button.close": "Close",
+    "list.status": "Status",
+    "list.status.active": "Active",
+    "list.status.inactive": "Inactive",
+    "list.name": "Name",
+    "list.categories": "Category"
 }
