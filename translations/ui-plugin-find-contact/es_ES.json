@@ -1,4 +1,10 @@
 {
     "button.addContact": "Añadir contacto",
-    "meta.title": "Añadir (asignar) 'persona de contacto' a la organización (plugin)"
+    "meta.title": "Añadir (asignar) 'persona de contacto' a la organización (plugin)",
+    "button.close": "Close",
+    "list.status": "Status",
+    "list.status.active": "Active",
+    "list.status.inactive": "Inactive",
+    "list.name": "Name",
+    "list.categories": "Category"
 }
