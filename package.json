@@ -16,7 +16,7 @@
     "okapiInterfaces": {
       "organizations-storage.contacts": "1.0"
     },
-    "displayName": "ui-plugin-find-contact.meta.title"
+    "displayName": "ui-plugin-find-contact.meta.pluginTitle"
   },
   "scripts": {
     "lint": "eslint .",
