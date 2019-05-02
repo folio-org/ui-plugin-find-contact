@@ -6,5 +6,7 @@
     "list.status.active": "Ativo",
     "list.status.inactive": "Inativo",
     "list.name": "Nome",
-    "list.categories": "Categoria"
+    "list.categories": "Categoria",
+    "meta.pluginTitle": "Contatos",
+    "modal.title": "Adicionar contatos"
 }
