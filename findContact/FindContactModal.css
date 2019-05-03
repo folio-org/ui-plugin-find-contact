@@ -1,6 +1,7 @@
 .findContactModalContent {
   min-height: 400px;
   padding: 0;
+  position: relative;
 
   & [class^="paneset--"] {
     height: 390px;
@@ -12,5 +13,11 @@
     & div {
       max-width: 100%;
     }
+  }
+
+  & .findContactModalNewBtnWrapper {
+    position: absolute;
+    right: 10px;
+    top: 8px;
   }
 }

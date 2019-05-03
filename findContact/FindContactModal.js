@@ -68,7 +68,7 @@ class FindContactModal extends React.Component {
   }
 
   render() {
-    const { resources, mutator, stripes } = this.props;
+    const { resources, mutator, stripes, renderNewContactBtn } = this.props;
 
     const resultsFormatter = {
       status: data => (
@@ -110,25 +110,30 @@ class FindContactModal extends React.Component {
           get(resources, 'categories.isPending', true) ? (
             <Icon icon="spinner-ellipsis" />
           ) : (
-            <SearchAndSort
-              packageInfo={this.props.packageInfo || packageInfo}
-              objectName="contact"
-              visibleColumns={visibleColumns}
-              columnMapping={columnMapping}
-              resultsFormatter={resultsFormatter}
-              initialResultCount={INITIAL_RESULT_COUNT}
-              resultCountIncrement={RESULT_COUNT_INCREMENT}
-              parentResources={resources}
-              parentMutator={mutator}
-              filterConfig={filterConfig}
-              stripes={stripes}
-              viewRecordComponent={noop}
-              disableRecordCreation
-              browseOnly
-              showSingleResult
-              onSelectRow={this.onSelectRow}
-              viewRecordPerms=""
-            />
+            <Fragment>
+              <div className={css.findContactModalNewBtnWrapper}>
+                {renderNewContactBtn()}
+              </div>
+              <SearchAndSort
+                packageInfo={this.props.packageInfo || packageInfo}
+                objectName="contact"
+                visibleColumns={visibleColumns}
+                columnMapping={columnMapping}
+                resultsFormatter={resultsFormatter}
+                initialResultCount={INITIAL_RESULT_COUNT}
+                resultCountIncrement={RESULT_COUNT_INCREMENT}
+                parentResources={resources}
+                parentMutator={mutator}
+                filterConfig={filterConfig}
+                stripes={stripes}
+                viewRecordComponent={noop}
+                disableRecordCreation
+                browseOnly
+                showSingleResult
+                onSelectRow={this.onSelectRow}
+                viewRecordPerms=""
+              />
+            </Fragment>
           )
         }
       </Modal>
@@ -143,6 +148,11 @@ FindContactModal.propTypes = {
   resources:  PropTypes.object.isRequired,
   closeCB: PropTypes.func.isRequired,
   addContacts: PropTypes.func.isRequired,
+  renderNewContactBtn: PropTypes.func,
+};
+
+FindContactModal.defaultProps = {
+  renderNewContactBtn: noop,
 };
 
 export default FindContactModal;
