@@ -14,17 +14,31 @@ import { categoriesResource } from '@folio/organizations/src/common/resources';
 import { CONTACTS_API } from '@folio/organizations/src/common/constants';
 
 import packageInfo from '../package';
+
+import { FILTERS } from './constants';
+import FindContactFilters from './FindContactFilters';
 import css from './FindContactModal.css';
 
 const INITIAL_RESULT_COUNT = 30;
 const RESULT_COUNT_INCREMENT = 30;
 
-const filterConfig = [];
+const filterConfig = [
+  {
+    name: FILTERS.STATUS,
+    cql: FILTERS.STATUS,
+    values: [],
+  },
+  {
+    name: FILTERS.CATEGORY,
+    cql: FILTERS.CATEGORY,
+    values: [],
+  },
+];
 const visibleColumns = ['status', 'name', 'categories'];
 const columnMapping = {
-  status: <FormattedMessage id="ui-plugin-find-contact.list.status" />,
-  name: <FormattedMessage id="ui-plugin-find-contact.list.name" />,
-  categories: <FormattedMessage id="ui-plugin-find-contact.list.categories" />,
+  status: <FormattedMessage id="ui-plugin-find-contact.contact.status" />,
+  name: <FormattedMessage id="ui-plugin-find-contact.contact.name" />,
+  categories: <FormattedMessage id="ui-plugin-find-contact.contact.categories" />,
 };
 
 class FindContactModal extends React.Component {
@@ -67,12 +81,61 @@ class FindContactModal extends React.Component {
     this.closeModal();
   }
 
+  getActiveFilters = () => {
+    const { query } = this.props.resources;
+
+    if (!query || !query.filters) return {};
+
+    return query.filters
+      .split(',')
+      .reduce((filterMap, currentFilter) => {
+        const [name, value] = currentFilter.split('.');
+
+        if (!Array.isArray(filterMap[name])) {
+          filterMap[name] = [];
+        }
+
+        filterMap[name].push(value);
+        return filterMap;
+      }, {});
+  }
+
+  handleFilterChange = ({ name, values }) => {
+    const newFilters = {
+      ...this.getActiveFilters(),
+      [name]: values,
+    };
+
+    const filters = Object.keys(newFilters)
+      .map((filterName) => {
+        return newFilters[filterName]
+          .map((filterValue) => `${filterName}.${filterValue}`)
+          .join(',');
+      })
+      .filter(filter => filter)
+      .join(',');
+
+    this.props.mutator.query.update({ filters });
+  }
+
+  renderFilters = (onChange) => {
+    const { resources } = this.props;
+
+    return (
+      <FindContactFilters
+        activeFilters={this.getActiveFilters()}
+        onChange={onChange}
+        categories={get(resources, 'categories.records', [])}
+      />
+    );
+  }
+
   render() {
     const { resources, mutator, stripes, renderNewContactBtn } = this.props;
 
     const resultsFormatter = {
       status: data => (
-        <FormattedMessage id={`ui-plugin-find-contact.list.status.${get(data, 'inactive', false) ? 'inactive' : 'active'}`} />
+        <FormattedMessage id={`ui-plugin-find-contact.contact.status.${get(data, 'inactive', false) ? 'inactive' : 'active'}`} />
       ),
       name: data => `${get(data, 'lastName', '')}, ${get(data, 'firstName', '')}`,
       categories: data => (
@@ -124,7 +187,8 @@ class FindContactModal extends React.Component {
                 resultCountIncrement={RESULT_COUNT_INCREMENT}
                 parentResources={resources}
                 parentMutator={mutator}
-                filterConfig={filterConfig}
+                onFilterChange={this.handleFilterChange}
+                renderFilters={this.renderFilters}
                 stripes={stripes}
                 viewRecordComponent={noop}
                 disableRecordCreation
