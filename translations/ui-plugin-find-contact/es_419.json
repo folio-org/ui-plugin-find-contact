@@ -2,11 +2,11 @@
     "button.addContact": "Add contact",
     "meta.title": "Add (assign) 'contact person' to organization (plugin)",
     "button.close": "Cerrar",
-    "list.status": "Estado",
-    "list.status.active": "Activo",
-    "list.status.inactive": "Inactivo",
-    "list.name": "Nombre",
-    "list.categories": "Categoría",
     "meta.pluginTitle": "Contacts",
-    "modal.title": "Add contacts"
+    "modal.title": "Add contacts",
+    "contact.status": "Status",
+    "contact.status.active": "Active",
+    "contact.status.inactive": "Inactive",
+    "contact.name": "Name",
+    "contact.categories": "Category"
 }

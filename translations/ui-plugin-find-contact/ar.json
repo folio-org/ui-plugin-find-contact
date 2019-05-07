@@ -2,11 +2,11 @@
     "button.addContact": "إضافة جهة اتصال",
     "meta.title": "إضافة (تعيين) 'جهة اتصال' إلى مؤسسة (برنامج مساعد)",
     "button.close": "إغلاق",
-    "list.status": "الحالة",
-    "list.status.active": "نشط",
-    "list.status.inactive": "غير نشط",
-    "list.name": "الاسم",
-    "list.categories": "الفئة",
     "meta.pluginTitle": "جهات الاتصال",
-    "modal.title": "إضافة جهات اتصال"
+    "modal.title": "إضافة جهات اتصال",
+    "contact.status": "الحالة",
+    "contact.status.active": "نشط",
+    "contact.status.inactive": "غير نشط",
+    "contact.name": "الاسم",
+    "contact.categories": "الفئة"
 }
