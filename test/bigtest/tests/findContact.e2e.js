@@ -8,6 +8,7 @@ const CONTACTS_COUNT = 15;
 
 describe('Find contact plugin', function () {
   const findContact = new FindContactInteractor();
+
   setupApplication();
 
   beforeEach(async function () {
