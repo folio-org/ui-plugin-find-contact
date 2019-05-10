@@ -6,7 +6,7 @@ import {
   Accordion,
   AccordionSet,
   FilterAccordionHeader,
-  Select,
+  Selection,
 } from '@folio/stripes/components';
 import { CheckboxFilter } from '@folio/stripes/smart-components';
 
@@ -61,14 +61,13 @@ class FindContactFilters extends Component {
     );
   }
 
-  onChangeCategoryFilter = e => this.props.onChange({ name: FILTERS.CATEGORY, values: [e.target.value] });
+  onChangeCategoryFilter = category => this.props.onChange({ name: FILTERS.CATEGORY, values: [category] });
 
   renderCategoryFilter = () => {
     const dataOptions = this.props.categories.map(category => ({
       value: category.id,
       label: category.value,
     }));
-    dataOptions.unshift({ value: null });
 
     const activeFilters = this.props.activeFilters.categories || [];
 
@@ -79,8 +78,7 @@ class FindContactFilters extends Component {
         label={<FormattedMessage id="ui-plugin-find-contact.contact.categories" />}
         onClearFilter={this.createClearFilterHandler(FILTERS.CATEGORY)}
       >
-        <Select
-          fullWidth
+        <Selection
           dataOptions={dataOptions}
           value={activeFilters[0] || ''}
           onChange={this.onChangeCategoryFilter}

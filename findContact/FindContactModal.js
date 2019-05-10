@@ -161,6 +161,7 @@ class FindContactModal extends React.Component {
       <Modal
         data-test-find-contact-modal
         dismissible
+        enforceFocus={false}
         footer={footer}
         label={<FormattedMessage id="ui-plugin-find-contact.modal.title" />}
         onClose={this.closeModal}
