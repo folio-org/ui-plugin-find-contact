@@ -21,7 +21,7 @@ export default function setupApplication({
     }],
 
     translations: {
-      'dummy.title': 'Dummy'
+      'dummy.title': 'Dummy',
     },
   });
 }

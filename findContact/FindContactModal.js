@@ -46,7 +46,7 @@ class FindContactModal extends React.Component {
     query: {
       initialValue: {
         query: '',
-        filters: ''
+        filters: '',
       },
     },
     records: {
@@ -96,6 +96,7 @@ class FindContactModal extends React.Component {
         }
 
         filterMap[name].push(value);
+
         return filterMap;
       }, {});
   }
@@ -207,10 +208,10 @@ class FindContactModal extends React.Component {
 }
 
 FindContactModal.propTypes = {
-  packageInfo:  PropTypes.object,
-  stripes:  PropTypes.object.isRequired,
-  mutator:  PropTypes.object.isRequired,
-  resources:  PropTypes.object.isRequired,
+  packageInfo: PropTypes.object,
+  stripes: PropTypes.object.isRequired,
+  mutator: PropTypes.object.isRequired,
+  resources: PropTypes.object.isRequired,
   closeCB: PropTypes.func.isRequired,
   addContacts: PropTypes.func.isRequired,
   renderNewContactBtn: PropTypes.func,

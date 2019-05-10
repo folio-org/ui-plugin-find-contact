@@ -11,7 +11,7 @@ import {
   static defaultScope = '[data-test-find-contact-modal]';
 
   instances = collection('[role=row] a', {
-    click: clickable()
+    click: clickable(),
   });
 
   noResultsDisplayed = isPresent('[data-test-find-user-no-results-message]');
