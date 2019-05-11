@@ -1,26 +1,44 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { get, noop } from 'lodash';
 
-import { SearchAndSort, makeQueryFunction } from '@folio/stripes/smart-components';
 import {
-  Modal,
+  get,
+  noop,
+  pickBy,
+} from 'lodash';
+
+import {
+  SearchAndSort,
+  makeQueryFunction,
+} from '@folio/stripes/smart-components';
+import {
   Button,
+  Checkbox,
   Icon,
+  Modal,
 } from '@folio/stripes/components';
 import { transformCategoryIdsToLables } from '@folio/organizations/src/common/utils/category';
 import { categoriesResource } from '@folio/organizations/src/common/resources';
 import { CONTACTS_API } from '@folio/organizations/src/common/constants';
 
 import packageInfo from '../package';
-
 import { FILTERS } from './constants';
 import FindContactFilters from './FindContactFilters';
 import css from './FindContactModal.css';
 
 const INITIAL_RESULT_COUNT = 30;
 const RESULT_COUNT_INCREMENT = 30;
+
+const reduceContactsToMap = (contacts, isChecked = false) => {
+  const contactReducer = (accumulator, contact) => {
+    accumulator[contact.id] = isChecked ? contact : null;
+
+    return accumulator;
+  };
+
+  return contacts.reduce(contactReducer, {});
+};
 
 const filterConfig = [
   {
@@ -34,11 +52,13 @@ const filterConfig = [
     values: [],
   },
 ];
-const visibleColumns = ['status', 'name', 'categories'];
-const columnMapping = {
-  status: <FormattedMessage id="ui-plugin-find-contact.contact.status" />,
-  name: <FormattedMessage id="ui-plugin-find-contact.contact.name" />,
-  categories: <FormattedMessage id="ui-plugin-find-contact.contact.categories" />,
+
+const visibleColumns = ['isChecked', 'status', 'name', 'categories'];
+const columnWidths = {
+  isChecked: '8%',
+  status: '17%',
+  name: '25%',
+  categories: '50%',
 };
 
 class FindContactModal extends React.Component {
@@ -72,13 +92,17 @@ class FindContactModal extends React.Component {
     categories: categoriesResource,
   });
 
+  state = {
+    checkedContactsMap: {},
+    isAllChecked: false,
+  }
+
   closeModal = () => {
     this.props.closeCB();
   }
 
   onSelectRow = (e, contact) => {
-    this.props.addContacts([contact]);
-    this.closeModal();
+    this.toggleItem(contact);
   }
 
   getActiveFilters = () => {
@@ -131,10 +155,65 @@ class FindContactModal extends React.Component {
     );
   }
 
+  save = () => {
+    const contactList = Object.values(pickBy(this.state.checkedContactsMap));
+
+    this.props.addContacts(contactList);
+    this.closeModal();
+  }
+
+  toggleItem = (contact) => {
+    const { id } = contact;
+
+    this.setState(({ checkedContactsMap }) => {
+      const newContact = checkedContactsMap[id] ? null : contact;
+
+      return {
+        checkedContactsMap: {
+          ...checkedContactsMap,
+          [id]: newContact,
+        },
+        isAllChecked: false,
+      };
+    });
+  }
+
+  toggleAll = () => {
+    this.setState((state, props) => {
+      const isAllChecked = !state.isAllChecked;
+      const contacts = get(props.resources, 'records.records', []);
+      const checkedContactsMap = reduceContactsToMap(contacts, isAllChecked);
+
+      return {
+        checkedContactsMap,
+        isAllChecked,
+      };
+    });
+  }
+
   render() {
     const { resources, mutator, stripes, renderNewContactBtn } = this.props;
-
+    const { checkedContactsMap, isAllChecked } = this.state;
+    const checkedContactsListLength = Object.values(pickBy(checkedContactsMap)).length;
+    const columnMapping = {
+      isChecked: (
+        <Checkbox
+          checked={isAllChecked}
+          onChange={this.toggleAll}
+          type="checkbox"
+        />
+      ),
+      status: <FormattedMessage id="ui-plugin-find-contact.contact.status" />,
+      name: <FormattedMessage id="ui-plugin-find-contact.contact.name" />,
+      categories: <FormattedMessage id="ui-plugin-find-contact.contact.categories" />,
+    };
     const resultsFormatter = {
+      isChecked: data => (
+        <Checkbox
+          type="checkbox"
+          checked={Boolean(checkedContactsMap[data.id])}
+        />
+      ),
       status: data => (
         <FormattedMessage id={`ui-plugin-find-contact.contact.status.${get(data, 'inactive', false) ? 'inactive' : 'active'}`} />
       ),
@@ -148,18 +227,34 @@ class FindContactModal extends React.Component {
     };
 
     const footer = (
-      <Fragment>
+      <div className={css.footer}>
         <Button
           marginBottom0
           onClick={this.closeModal}
+          className="left"
         >
-          <FormattedMessage id="ui-plugin-find-contact.button.close" />
+          <FormattedMessage id="ui-plugin-find-contact.button.cancel" />
         </Button>
-      </Fragment>
+        <div>
+          <FormattedMessage
+            id="ui-plugin-find-contact.totalSelected"
+            values={{ count: checkedContactsListLength }}
+          />
+        </div>
+        <Button
+          marginBottom0
+          onClick={this.save}
+          disabled={!checkedContactsListLength}
+          buttonStyle="primary"
+        >
+          <FormattedMessage id="ui-plugin-find-contact.button.save" />
+        </Button>
+      </div>
     );
 
     return (
       <Modal
+        contentClass={css.findContactModalContent}
         data-test-find-contact-modal
         dismissible
         enforceFocus={false}
@@ -167,9 +262,8 @@ class FindContactModal extends React.Component {
         label={<FormattedMessage id="ui-plugin-find-contact.modal.title" />}
         onClose={this.closeModal}
         open
-        contentClass={css.findContactModalContent}
-        style={{ minHeight: '500px' }}
         size="large"
+        style={{ minHeight: '500px' }}
       >
         {
           get(resources, 'categories.isPending', true) ? (
@@ -180,24 +274,25 @@ class FindContactModal extends React.Component {
                 {renderNewContactBtn()}
               </div>
               <SearchAndSort
-                packageInfo={this.props.packageInfo || packageInfo}
-                objectName="contact"
-                visibleColumns={visibleColumns}
+                browseOnly
                 columnMapping={columnMapping}
-                resultsFormatter={resultsFormatter}
+                columnWidths={columnWidths}
+                disableRecordCreation
                 initialResultCount={INITIAL_RESULT_COUNT}
-                resultCountIncrement={RESULT_COUNT_INCREMENT}
-                parentResources={resources}
-                parentMutator={mutator}
+                objectName="contact"
                 onFilterChange={this.handleFilterChange}
+                onSelectRow={this.onSelectRow}
+                packageInfo={this.props.packageInfo || packageInfo}
+                parentMutator={mutator}
+                parentResources={resources}
                 renderFilters={this.renderFilters}
+                resultCountIncrement={RESULT_COUNT_INCREMENT}
+                resultsFormatter={resultsFormatter}
+                showSingleResult
                 stripes={stripes}
                 viewRecordComponent={noop}
-                disableRecordCreation
-                browseOnly
-                showSingleResult
-                onSelectRow={this.onSelectRow}
                 viewRecordPerms=""
+                visibleColumns={visibleColumns}
               />
             </Fragment>
           )
@@ -208,12 +303,12 @@ class FindContactModal extends React.Component {
 }
 
 FindContactModal.propTypes = {
-  packageInfo: PropTypes.object,
-  stripes: PropTypes.object.isRequired,
+  addContacts: PropTypes.func.isRequired,
+  closeCB: PropTypes.func.isRequired,
   mutator: PropTypes.object.isRequired,
   resources: PropTypes.object.isRequired,
-  closeCB: PropTypes.func.isRequired,
-  addContacts: PropTypes.func.isRequired,
+  stripes: PropTypes.object.isRequired,
+  packageInfo: PropTypes.object,
   renderNewContactBtn: PropTypes.func,
 };
 
