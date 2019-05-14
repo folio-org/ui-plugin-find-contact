@@ -2,7 +2,9 @@
   "button.addContact": "Add contact",
   "meta.title": "Add (assign) 'contact person' to organization (plugin)",
   "meta.pluginTitle": "Contacts",
-  "button.close": "Close",
+  "button.cancel": "Cancel",
+  "button.save": "Save",
+  "totalSelected": "Total selected: {count}",
 
   "contact.status": "Status",
   "contact.status.active": "Active",
