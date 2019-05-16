@@ -1,10 +1,10 @@
 import {
-  interactor,
-  scoped,
-  collection,
   clickable,
+  collection,
+  interactor,
   is,
-  isPresent,
+  property,
+  scoped,
 } from '@bigtest/interactor';
 
 @interactor class PluginModalInteractor {
@@ -14,7 +14,14 @@ import {
     click: clickable(),
   });
 
-  noResultsDisplayed = isPresent('[data-test-find-user-no-results-message]');
+  save = scoped('[data-test-find-contact-modal-save]', {
+    click: clickable(),
+    isDisabled: property('disabled'),
+  });
+
+  selectAll = scoped('[data-test-find-contact-modal-select-all]', {
+    click: clickable(),
+  });
 }
 
 @interactor class FindContactInteractor {
