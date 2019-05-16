@@ -42,9 +42,34 @@ describe('Find contact plugin', function () {
       expect(findContact.modal.instances().length).to.be.equal(CONTACTS_COUNT);
     });
 
+    it('should display disabled save button', function () {
+      expect(findContact.modal.save.isDisabled).to.be.true;
+    });
+
     describe('select a contact', function () {
       beforeEach(async function () {
         await findContact.modal.instances(1).click();
+      });
+
+      it('should enable Save button', function () {
+        expect(findContact.modal.save.isDisabled).to.be.false;
+      });
+    });
+
+    describe('select all', function () {
+      beforeEach(async function () {
+        await findContact.modal.selectAll.click();
+      });
+
+      it('should enable Save button', function () {
+        expect(findContact.modal.save.isDisabled).to.be.false;
+      });
+    });
+
+    describe('save selected contacts', function () {
+      beforeEach(async function () {
+        await findContact.modal.selectAll.click();
+        await findContact.modal.save.click();
       });
 
       it('should close modal', function () {

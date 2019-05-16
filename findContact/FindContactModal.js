@@ -199,6 +199,7 @@ class FindContactModal extends React.Component {
       isChecked: (
         <Checkbox
           checked={isAllChecked}
+          data-test-find-contact-modal-select-all
           onChange={this.toggleAll}
           type="checkbox"
         />
@@ -242,6 +243,7 @@ class FindContactModal extends React.Component {
           />
         </div>
         <Button
+          data-test-find-contact-modal-save
           marginBottom0
           onClick={this.save}
           disabled={!checkedContactsListLength}
