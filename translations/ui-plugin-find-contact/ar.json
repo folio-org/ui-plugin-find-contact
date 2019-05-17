@@ -1,12 +1,14 @@
 {
     "button.addContact": "إضافة جهة اتصال",
     "meta.title": "إضافة (تعيين) 'جهة اتصال' إلى مؤسسة (برنامج مساعد)",
-    "button.close": "إغلاق",
     "meta.pluginTitle": "جهات الاتصال",
     "modal.title": "إضافة جهات اتصال",
     "contact.status": "الحالة",
     "contact.status.active": "نشط",
     "contact.status.inactive": "غير نشط",
     "contact.name": "الاسم",
-    "contact.categories": "الفئة"
+    "contact.categories": "الفئة",
+    "button.cancel": "إلغاء",
+    "button.save": "حفظ",
+    "totalSelected": "إجمالي المحدد: {count}"
 }
