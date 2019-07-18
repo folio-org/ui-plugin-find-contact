@@ -11,10 +11,10 @@
     "node": ">=8.9.4"
   },
   "stripes": {
-    "type": "plugin",
+    "actsAs": ["plugin"],
     "pluginType": "find-contact",
     "okapiInterfaces": {
-      "organizations-storage.contacts": "1.1"
+      "organizations-storage.contacts": "1.1 2.0"
     },
     "displayName": "ui-plugin-find-contact.meta.pluginTitle"
   },
