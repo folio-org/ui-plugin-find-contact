@@ -8,24 +8,24 @@ import {
 } from '@bigtest/interactor';
 
 @interactor class PluginModalInteractor {
-  static defaultScope = '[data-test-find-contact-modal]';
+  static defaultScope = '[data-test-find-records-modal]';
 
-  instances = collection('[role=row] a', {
-    click: clickable(),
+  instances = collection('[role=group] [role=row]', {
+    click: clickable('input[type="checkbox"]'),
   });
 
-  save = scoped('[data-test-find-contact-modal-save]', {
+  save = scoped('[data-test-find-records-modal-save]', {
     click: clickable(),
     isDisabled: property('disabled'),
   });
 
-  selectAll = scoped('[data-test-find-contact-modal-select-all]', {
+  selectAll = scoped('[data-test-find-records-modal-select-all]', {
     click: clickable(),
   });
 }
 
 @interactor class FindContactInteractor {
-  button = scoped('[data-test-plugin-find-contact-button]', {
+  button = scoped('[data-test-plugin-find-record-button]', {
     click: clickable(),
     isFocused: is(':focus'),
   });

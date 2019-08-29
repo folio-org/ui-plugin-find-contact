@@ -1,1 +1,1 @@
-export { default } from './FindContactContainer';
+export { default } from './PluginFindContacts';

@@ -1,6 +1,6 @@
 import React from 'react';
 import noop from 'lodash/noop';
-import { Pluggable, withStripes } from '@folio/stripes/core';
+import { Pluggable } from '@folio/stripes/core';
 
 class PluginHarness extends React.Component {
   render() {
@@ -12,7 +12,6 @@ class PluginHarness extends React.Component {
         searchLabel="Look up contacts"
         marginTop0
         searchButtonStyle="link"
-        dataKey="contactsTest"
         addContacts={noop}
         {...this.props}
       >
@@ -22,4 +21,4 @@ class PluginHarness extends React.Component {
   }
 }
 
-export default withStripes(PluginHarness);
+export default PluginHarness;

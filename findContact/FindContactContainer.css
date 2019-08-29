@@ -1,8 +1,0 @@
-.searchControl {
-  margin-top: 8px;
-  display: flex;
-
-  &.marginTop0 {
-    margin-top: 0;
-  }
-}

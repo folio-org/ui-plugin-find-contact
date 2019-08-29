@@ -14,7 +14,7 @@
     "actsAs": ["plugin"],
     "pluginType": "find-contact",
     "okapiInterfaces": {
-      "organizations-storage.contacts": "1.1 2.0"
+      "organizations-storage.contacts": "2.0"
     },
     "displayName": "ui-plugin-find-contact.meta.pluginTitle"
   },
@@ -44,8 +44,8 @@
     "webpack": "^4.10.2"
   },
   "dependencies": {
-    "@folio/organizations": "^1.0.0",
-    "classnames": "^2.2.5",
+    "@folio/organizations": "^1.4.0",
+    "@folio/stripes-acq-components": "^1.1.0",
     "lodash": "^4.17.11",
     "prop-types": "^15.6.0",
     "react-intl": "^2.8.0"
