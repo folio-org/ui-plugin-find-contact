@@ -19,10 +19,9 @@ of the Module Developer's Guide.
 --- | --- | --- | --- |
 | `addContacts` | func: (contacts) => {} | Callback fired when a user clicks Save&Close button in Modal with contacts selected | Yes |
 | `disabled` | boolean | Flag to control `disabled` property of plugin's button, since it's rendered inside the plugin | No |
-| `stripes` | object | stripes-core glue object | Yes |
 | `searchButtonStyle` | string | optional styling of plugin's button | No |
 | `searchLabel` | React.node | optional jsx for plugin's button label | No |
-| `dataKey` | string | dataKey passed to stripes/connect when creating the connected Agreements component. | Yes |
+| `renderNewContactBtn` | func | optional function to render button `New` if necessary | No |
 
 This is a [Stripes](https://github.com/folio-org/stripes-core/) UI module to display, filter and select contact persons in ui-organizations app.
 

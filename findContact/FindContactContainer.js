@@ -1,88 +1,163 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, omitProps } from '@folio/stripes/components';
-import className from 'classnames';
+import { get } from 'lodash';
 import { FormattedMessage } from 'react-intl';
-import { noop } from 'lodash';
 
-import FindContactModal from './FindContactModal';
+import {
+  makeQueryFunction,
+  StripesConnectedSource,
+} from '@folio/stripes/smart-components';
+import { stripesConnect } from '@folio/stripes/core';
+import { transformCategoryIdsToLables } from '@folio/organizations/src/common/utils/category';
+import { categoriesResource } from '@folio/organizations/src/common/resources';
+import { CONTACTS_API } from '@folio/organizations/src/common/constants';
 
-import css from './FindContactContainer.css';
+import filterConfig from './filterConfig';
+
+const INITIAL_RESULT_COUNT = 30;
+const RESULT_COUNT_INCREMENT = 30;
+const columnWidths = {
+  isChecked: '8%',
+  status: '20%',
+  name: '32%',
+  categories: '40%',
+};
+const visibleColumns = ['status', 'name', 'categories'];
+const columnMapping = {
+  status: <FormattedMessage id="ui-plugin-find-contact.contact.status" />,
+  name: <FormattedMessage id="ui-plugin-find-contact.contact.name" />,
+  categories: <FormattedMessage id="ui-plugin-find-contact.contact.categories" />,
+};
+const idPrefix = 'uiPluginFindContacts-';
+const modalLabel = <FormattedMessage id="ui-plugin-find-contact.modal.title" />;
 
 class FindContactContainer extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.connectedFindContactModal = props.stripes.connect(FindContactModal, { dataKey: this.props.dataKey });
-  }
-
-  state = {
-    openModal: false,
-  }
-
-  getStyle() {
-    const { marginTop0 } = this.props;
-
-    return className(
-      css.searchControl,
-      { [css.marginTop0]: marginTop0 },
-    );
-  }
-
-  openModal = () => this.setState({
-    openModal: true,
+  static manifest = Object.freeze({
+    initializedFilterConfig: { initialValue: false },
+    query: {
+      initialValue: {
+        query: '',
+        filters: '',
+      },
+    },
+    records: {
+      throwErrors: false,
+      type: 'okapi',
+      records: 'contacts',
+      path: CONTACTS_API,
+      clear: true,
+      recordsRequired: '%{resultCount}',
+      perRequest: RESULT_COUNT_INCREMENT,
+      GET: {
+        params: {
+          query: makeQueryFunction(
+            'cql.allRecords=1',
+            '(firstName="%{query.query}*" or lastName="%{query.query}*")',
+            {},
+            filterConfig,
+          ),
+        },
+        staticFallback: { params: {} },
+      },
+    },
+    resultCount: { initialValue: INITIAL_RESULT_COUNT },
+    categories: categoriesResource,
   });
 
-  closeModal = () => this.setState({
-    openModal: false,
-  });
+  constructor(props, context) {
+    super(props, context);
+
+    this.logger = props.stripes.logger;
+    this.log = this.logger.log.bind(this.logger);
+  }
+
+  componentDidMount() {
+    this.source = new StripesConnectedSource(this.props, this.logger);
+    this.props.mutator.query.replace('');
+  }
+
+  componentDidUpdate() {
+    const { mutator, resources } = this.props;
+    const categories = get(resources, 'categories.records') || [];
+
+    if (categories.length) {
+      const catFilterConfig = filterConfig.find(group => group.name === 'categories');
+      const oldValuesLength = catFilterConfig.values.length;
+
+      catFilterConfig.values = categories.map(rec => ({ name: rec.value, cql: rec.id }));
+      if (oldValuesLength === 0) {
+        mutator.initializedFilterConfig.replace(true); // triggers refresh of contacts
+      }
+    }
+
+    this.source.update(this.props);
+  }
+
+  onNeedMoreData = () => {
+    if (this.source) {
+      this.source.fetchMore(RESULT_COUNT_INCREMENT);
+    }
+  };
+
+  querySetter = ({ nsValues, state }) => {
+    if (/reset/.test(state.changeType)) {
+      this.props.mutator.query.replace(nsValues);
+    } else {
+      this.props.mutator.query.update(nsValues);
+    }
+  }
+
+  queryGetter = () => {
+    return get(this.props.resources, 'query', {});
+  }
 
   render() {
-    const { disabled, searchButtonStyle, searchLabel, marginBottom0 } = this.props;
-    const props = omitProps(this.props, ['disabled', 'searchButtonStyle', 'searchLabel', 'marginBottom0', 'marginTop0']);
+    const {
+      resources,
+      children,
+    } = this.props;
 
-    return (
-      <div className={this.getStyle()}>
-        <Button
-          data-test-plugin-find-contact-button
-          buttonStyle={searchButtonStyle}
-          data-test-add-contact
-          disabled={disabled}
-          key="searchButton"
-          marginBottom0={marginBottom0}
-          onClick={this.openModal}
-        >
-          {searchLabel}
-        </Button>
-        {this.state.openModal && (
-          <this.connectedFindContactModal
-            closeCB={this.closeModal}
-            {...props}
-          />
-        )}
-      </div>
-    );
+    const resultsFormatter = {
+      status: data => (
+        <FormattedMessage id={`ui-plugin-find-contact.contact.status.${get(data, 'inactive', false) ? 'inactive' : 'active'}`} />
+      ),
+      name: data => `${get(data, 'lastName', '')}, ${get(data, 'firstName', '')}`,
+      categories: data => (
+        transformCategoryIdsToLables(
+          get(resources, 'categories.records', []),
+          get(data, 'categories', []),
+        )
+      ),
+    };
+
+    if (this.source) {
+      this.source.update(this.props);
+    }
+
+    return children({
+      columnMapping,
+      columnWidths,
+      filterConfig,
+      idPrefix,
+      modalLabel,
+      onNeedMoreData: this.onNeedMoreData,
+      queryGetter: this.queryGetter,
+      querySetter: this.querySetter,
+      resultsFormatter,
+      source: this.source,
+      visibleColumns,
+      data: {
+        records: get(resources, 'records.records', []),
+      },
+    });
   }
 }
 
-FindContactContainer.defaultProps = {
-  disabled: false,
-  marginBottom0: true,
-  marginTop0: true,
-  searchButtonStyle: 'primary',
-  searchLabel: <FormattedMessage id="ui-plugin-find-contact.button.addContact" />,
-  addContacts: noop,
-};
-
 FindContactContainer.propTypes = {
-  disabled: PropTypes.bool,
-  marginBottom0: PropTypes.bool,
-  marginTop0: PropTypes.bool,
-  searchButtonStyle: PropTypes.string,
-  searchLabel: PropTypes.node,
-  stripes: PropTypes.object,
-  dataKey: PropTypes.string.isRequired,
-  addContacts: PropTypes.func,
+  stripes: PropTypes.object.isRequired,
+  children: PropTypes.func,
+  mutator: PropTypes.object.isRequired,
+  resources: PropTypes.object.isRequired,
 };
 
-export default FindContactContainer;
+export default stripesConnect(FindContactContainer, { dataKey: 'find_contact' });

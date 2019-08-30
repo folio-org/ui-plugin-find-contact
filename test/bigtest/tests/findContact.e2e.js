@@ -13,6 +13,7 @@ describe('Find contact plugin', function () {
 
   beforeEach(async function () {
     this.server.createList('contact', CONTACTS_COUNT);
+    this.server.createList('category', 2);
 
     this.visit('/dummy');
   });
