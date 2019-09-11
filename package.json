@@ -14,6 +14,7 @@
     "actsAs": ["plugin"],
     "pluginType": "find-contact",
     "okapiInterfaces": {
+      "organizations-storage.categories": "1.0",
       "organizations-storage.contacts": "2.0"
     },
     "displayName": "ui-plugin-find-contact.meta.pluginTitle"
