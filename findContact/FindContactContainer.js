@@ -117,17 +117,20 @@ class FindContactContainer extends React.Component {
       children,
     } = this.props;
 
+    const users = get(resources, 'records.records', []);
+    const records = users.map(user => ({
+      ...user,
+      categories: transformCategoryIdsToLables(
+        get(resources, 'categories.records', []),
+        get(user, 'categories', []),
+      ),
+    }));
+
     const resultsFormatter = {
       status: data => (
         <FormattedMessage id={`ui-plugin-find-contact.contact.status.${get(data, 'inactive', false) ? 'inactive' : 'active'}`} />
       ),
       name: data => `${get(data, 'lastName', '')}, ${get(data, 'firstName', '')}`,
-      categories: data => (
-        transformCategoryIdsToLables(
-          get(resources, 'categories.records', []),
-          get(data, 'categories', []),
-        )
-      ),
     };
 
     if (this.source) {
@@ -147,7 +150,7 @@ class FindContactContainer extends React.Component {
       source: this.source,
       visibleColumns,
       data: {
-        records: get(resources, 'records.records', []),
+        records
       },
     });
   }
