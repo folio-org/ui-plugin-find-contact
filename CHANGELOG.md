@@ -1,5 +1,11 @@
 # Change history for ui-plugin-find-contact
 
+## [1.3.0](https://github.com/folio-org/ui-plugin-find-contact/tree/v1.3.0) (2019-09-11)
+[Full Changelog](https://github.com/folio-org/ui-plugin-find-contact/compare/v1.2.0...v1.3.0)
+
+* fetch new translations
+* [UIORGS-87](https://issues.folio.org/browse/UIORGS-87) refactor to use `SearchAndSortQuery`
+
 ## [1.2.0](https://github.com/folio-org/ui-plugin-find-contact/tree/v1.2.0) (2019-07-23)
 [Full Changelog](https://github.com/folio-org/ui-plugin-find-contact/compare/v1.1.0...v1.2.0)
 
