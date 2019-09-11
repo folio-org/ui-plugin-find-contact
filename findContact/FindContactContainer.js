@@ -150,7 +150,7 @@ class FindContactContainer extends React.Component {
       source: this.source,
       visibleColumns,
       data: {
-        records
+        records,
       },
     });
   }
