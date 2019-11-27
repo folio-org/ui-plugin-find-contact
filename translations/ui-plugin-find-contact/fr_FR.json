@@ -7,8 +7,8 @@
     "contact.status.active": "Actif",
     "contact.status.inactive": "Inactif",
     "contact.name": "Nom",
-    "contact.categories": "Category",
+    "contact.categories": "Catégorie",
     "button.cancel": "Annuler",
-    "button.save": "Save",
+    "button.save": "Sauvegarder",
     "totalSelected": "Total sélectionné: {count}"
 }
