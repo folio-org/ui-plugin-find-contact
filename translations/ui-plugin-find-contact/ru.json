@@ -1,7 +1,7 @@
 {
     "button.addContact": "Добавить контакт",
     "meta.title": "Add (assign) 'contact person' to organization (plugin)",
-    "meta.pluginTitle": "Contacts",
+    "meta.pluginTitle": "Контакты",
     "modal.title": "Add contacts",
     "contact.status": "Статус",
     "contact.status.active": "Активный",
