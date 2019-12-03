@@ -51,9 +51,6 @@
     "prop-types": "^15.6.0",
     "react-intl": "^2.8.0"
   },
-  "resolutions": {
-    "fake-xml-http-request": "2.0.0"
-  },
   "peerDependencies": {
     "@folio/stripes": "^2.7.0",
     "react": "*"
