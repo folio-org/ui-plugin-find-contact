@@ -1,5 +1,10 @@
 # Change history for ui-plugin-find-contact
 
+## [1.4.0](https://github.com/folio-org/ui-plugin-find-contact/tree/v1.4.0) (2019-12-04)
+[Full Changelog](https://github.com/folio-org/ui-plugin-find-contact/compare/v1.3.0...v1.4.0)
+
+* fetch new translations
+
 ## [1.3.0](https://github.com/folio-org/ui-plugin-find-contact/tree/v1.3.0) (2019-09-11)
 [Full Changelog](https://github.com/folio-org/ui-plugin-find-contact/compare/v1.2.0...v1.3.0)
 
