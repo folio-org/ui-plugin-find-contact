@@ -1,6 +1,6 @@
 {
   "name": "@folio/plugin-find-contact",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Find and select contacts plugin for Stripes",
   "repository": "folio-org/ui-plugin-find-contact",
   "publishConfig": {
@@ -14,8 +14,8 @@
     "actsAs": ["plugin"],
     "pluginType": "find-contact",
     "okapiInterfaces": {
-      "organizations-storage.categories": "1.0",
-      "organizations-storage.contacts": "2.0"
+      "organizations-storage.categories": "1.0 1.2",
+      "organizations-storage.contacts": "2.0 2.1"
     },
     "displayName": "ui-plugin-find-contact.meta.pluginTitle"
   },
@@ -37,7 +37,9 @@
     "chai": "^4.2.0",
     "eslint": "^5.5.0",
     "eslint-plugin-filenames": "^1.3.2",
+    "eslint-plugin-jest": "^23.0.4",
     "eslint-plugin-no-only-tests": "^2.3.0",
+    "eslint-plugin-react-hooks": "^2.1.1",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
     "react-redux": "^5.0.7",
