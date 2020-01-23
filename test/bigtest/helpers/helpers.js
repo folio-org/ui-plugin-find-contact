@@ -2,6 +2,8 @@ import { setupStripesCore } from '@folio/stripes/core/test';
 import mirageOptions from '../network';
 import PluginHarness from './PluginHarness';
 
+mirageOptions.serverType = 'miragejs';
+
 export default function setupApplication({
   scenarios,
   hasAllPerms = true,
