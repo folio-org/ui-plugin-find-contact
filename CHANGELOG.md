@@ -1,5 +1,10 @@
 # Change history for ui-plugin-find-contact
 
+## (IN PROGRESS)
+
+### Stories
+* [UIORGS-112](https://issues.folio.org/browse/UIORGS-112) Sorting when adding contacts does not work
+
 ## [1.4.0](https://github.com/folio-org/ui-plugin-find-contact/tree/v1.4.0) (2019-12-04)
 [Full Changelog](https://github.com/folio-org/ui-plugin-find-contact/compare/v1.3.0...v1.4.0)
 

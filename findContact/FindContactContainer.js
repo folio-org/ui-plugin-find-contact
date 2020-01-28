@@ -30,6 +30,10 @@ const columnMapping = {
 };
 const idPrefix = 'uiPluginFindContacts-';
 const modalLabel = <FormattedMessage id="ui-plugin-find-contact.modal.title" />;
+const SORT_MAP = {
+  name: 'lastName firstName',
+  status: 'inactive',
+};
 
 class FindContactContainer extends React.Component {
   static manifest = Object.freeze({
@@ -53,7 +57,7 @@ class FindContactContainer extends React.Component {
           query: makeQueryFunction(
             'cql.allRecords=1',
             '(firstName="%{query.query}*" or lastName="%{query.query}*")',
-            {},
+            SORT_MAP,
             filterConfig,
           ),
         },
