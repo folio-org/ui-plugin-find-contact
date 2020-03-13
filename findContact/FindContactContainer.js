@@ -8,10 +8,10 @@ import {
   StripesConnectedSource,
 } from '@folio/stripes/smart-components';
 import { stripesConnect } from '@folio/stripes/core';
-import { transformCategoryIdsToLables } from '@folio/organizations/src/common/utils/category';
-import { categoriesResource } from '@folio/organizations/src/common/resources';
-import { CONTACTS_API } from '@folio/organizations/src/common/constants';
 
+import { transformCategoryIdsToLables } from './utils';
+import { categoriesResource } from './resources';
+import { CONTACTS_API } from './api';
 import filterConfig from './filterConfig';
 
 const INITIAL_RESULT_COUNT = 30;

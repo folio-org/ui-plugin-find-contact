@@ -1,4 +1,4 @@
-import { CATEGORIES_API } from '@folio/organizations/src/common/constants';
+import { CATEGORIES_API } from '../../../../findContact/api';
 
 const configCategories = server => {
   server.get(CATEGORIES_API, (schema) => {
