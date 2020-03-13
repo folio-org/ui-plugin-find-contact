@@ -1,6 +1,6 @@
 {
   "name": "@folio/plugin-find-contact",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Find and select contacts plugin for Stripes",
   "repository": "folio-org/ui-plugin-find-contact",
   "publishConfig": {
@@ -46,7 +46,7 @@
     "regenerator-runtime": "^0.13.3"
   },
   "dependencies": {
-    "@folio/stripes-acq-components": "^2.0.0",
+    "@folio/stripes-acq-components": "^2.0.1",
     "lodash": "^4.17.11",
     "prop-types": "^15.6.0"
   },
