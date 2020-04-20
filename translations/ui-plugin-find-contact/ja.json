@@ -3,7 +3,7 @@
     "meta.title": "組織に 「連絡担当者」を追加 (割り当て) (プラグイン)",
     "meta.pluginTitle": "Contacts",
     "modal.title": "Add contacts",
-    "contact.status": "Status",
+    "contact.status": "ステータス",
     "contact.status.active": "Active",
     "contact.status.inactive": "Inactive",
     "contact.name": "Name",
