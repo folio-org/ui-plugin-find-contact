@@ -6,8 +6,8 @@
     "contact.status": "ステータス",
     "contact.status.active": "Active",
     "contact.status.inactive": "Inactive",
-    "contact.name": "Name",
-    "contact.categories": "Category",
+    "contact.name": "名称",
+    "contact.categories": "カテゴリー",
     "button.cancel": "キャンセル",
     "button.save": "Save",
     "totalSelected": "Total selected: {count}"
