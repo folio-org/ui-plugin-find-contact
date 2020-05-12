@@ -1,6 +1,8 @@
 # Change history for ui-plugin-find-contact
 
 ## (IN PROGRESS)
+### Stories
+* [UIPFCONT-6](https://issues.folio.org/browse/UIPFCONT-6) ui-plugin-find-contact: Update to Stripes v4
 
 ## [2.0.1](https://github.com/folio-org/ui-plugin-find-contact/tree/v2.0.1) (2020-03-13)
 [Full Changelog](https://github.com/folio-org/ui-plugin-find-contact/compare/v1.4.0...v2.0.1)
