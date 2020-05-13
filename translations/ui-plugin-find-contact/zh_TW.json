@@ -9,6 +9,6 @@
     "contact.name": "名稱",
     "contact.categories": "类别",
     "button.cancel": "取消",
-    "button.save": "保存",
+    "button.save": "儲存",
     "totalSelected": "已選總數：{count}"
 }
