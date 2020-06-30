@@ -50,6 +50,9 @@
     "lodash": "^4.17.11",
     "prop-types": "^15.6.0"
   },
+  "stripesDeps": [
+    "@folio/stripes-acq-components"
+  ],
   "peerDependencies": {
     "@folio/stripes": "^4.0.0",
     "react": "*",
