@@ -2,6 +2,9 @@
 
 ## (IN PROGRESS)
 
+### Stories
+* [UISACQCOMP-3](https://issues.folio.org/browse/UISACQCOMP-3) Handle import of stripes-acq-components to modules and platform
+
 ## [2.1.0](https://github.com/folio-org/ui-plugin-find-contact/tree/v2.1.0) (2020-06-11)
 [Full Changelog](https://github.com/folio-org/ui-plugin-find-contact/compare/v2.0.1...v2.1.0)
 
