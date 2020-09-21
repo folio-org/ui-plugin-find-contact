@@ -9,6 +9,6 @@
     "contact.name": "名称",
     "contact.categories": "カテゴリー",
     "button.cancel": "キャンセル",
-    "button.save": "Save",
+    "button.save": "保存",
     "totalSelected": "Total selected: {count}"
 }
