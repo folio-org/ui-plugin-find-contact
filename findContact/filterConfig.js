@@ -24,6 +24,7 @@ const filterConfig = [
     name: 'categories',
     cql: 'categories',
     values: [],
+    operator: '=',
   },
 ];
 
