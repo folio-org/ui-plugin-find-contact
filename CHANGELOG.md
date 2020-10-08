@@ -1,6 +1,7 @@
 # Change history for ui-plugin-find-contact
 
 ## (IN PROGRESS)
+* Fix filter by category. Refs UIPFCONT-10.
 
 ### Stories
 * [UISACQCOMP-3](https://issues.folio.org/browse/UISACQCOMP-3) Handle import of stripes-acq-components to modules and platform
