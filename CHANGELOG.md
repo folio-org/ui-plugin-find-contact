@@ -1,7 +1,12 @@
 # Change history for ui-plugin-find-contact
 
 ## (IN PROGRESS)
+
+## [2.2.0](https://github.com/folio-org/ui-plugin-find-contact/tree/v2.2.0) (2020-10-09)
+[Full Changelog](https://github.com/folio-org/ui-plugin-find-contact/compare/v2.1.0...v2.2.0)
+
 * Fix filter by category. Refs UIPFCONT-10.
+* bump the @folio/stripes peer to v5.0.0
 
 ### Stories
 * [UISACQCOMP-3](https://issues.folio.org/browse/UISACQCOMP-3) Handle import of stripes-acq-components to modules and platform
