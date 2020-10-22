@@ -23,6 +23,7 @@ const PluginFindContacts = ({ addContacts, isMultiSelect, renderNewContactBtn, .
             {...modalProps}
             isMultiSelect={isMultiSelect}
             renderNewBtn={renderNewContactBtn}
+            getRecordLabel={({ lastName, firstName }) => `${lastName}, ${firstName}`}
           />
         )}
       </FindContactContainer>
