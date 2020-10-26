@@ -2,6 +2,8 @@
 
 ## (IN PROGRESS)
 
+* Contacts list - add aria-label to select item checkbox. Refs UIPFCONT-11.
+
 ## [2.2.0](https://github.com/folio-org/ui-plugin-find-contact/tree/v2.2.0) (2020-10-09)
 [Full Changelog](https://github.com/folio-org/ui-plugin-find-contact/compare/v2.1.0...v2.2.0)
 
