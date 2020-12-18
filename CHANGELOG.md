@@ -2,6 +2,8 @@
 
 ## (IN PROGRESS)
 
+* Add personal data disclosure form. Refs UIPCONT-14.
+
 ## [2.2.1](https://github.com/folio-org/ui-plugin-find-contact/tree/v2.2.1) (2020-10-29)
 [Full Changelog](https://github.com/folio-org/ui-plugin-find-contact/compare/v2.2.0...v2.2.1)
 
