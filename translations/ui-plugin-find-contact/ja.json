@@ -1,8 +1,8 @@
 {
-    "button.addContact": "Add contact",
+    "button.addContact": "連絡先を追加",
     "meta.title": "組織に 「連絡担当者」を追加 (割り当て) (プラグイン)",
     "meta.pluginTitle": "Contacts",
-    "modal.title": "Add contacts",
+    "modal.title": "連絡先を追加",
     "contact.status": "ステータス",
     "contact.status.active": "有効",
     "contact.status.inactive": "無効",
