@@ -9,6 +9,6 @@
     "contact.name": "Name",
     "contact.categories": "Category",
     "button.cancel": "Cancel",
-    "button.save": "Gem",
+    "button.save": "Save",
     "totalSelected": "Total selected: {count}"
 }
