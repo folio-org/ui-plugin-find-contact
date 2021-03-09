@@ -2,6 +2,7 @@
 
 ## (IN PROGRESS)
 
+* UI tests replacement with RTL/Jest.Refs FAT-43.
 * Add personal data disclosure form. Refs UIPCONT-14.
 
 ## [2.2.1](https://github.com/folio-org/ui-plugin-find-contact/tree/v2.2.1) (2020-10-29)
