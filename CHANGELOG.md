@@ -1,6 +1,7 @@
 # Change history for ui-plugin-find-contact
 
 ## (IN PROGRESS)
+* Compile Translation Files into AST Format. Refs UIPFCONT-18.
 
 ## [2.3.0](https://github.com/folio-org/ui-plugin-find-contact/tree/v2.3.0) (2021-03-15)
 [Full Changelog](https://github.com/folio-org/ui-plugin-find-contact/compare/v2.2.1...v2.3.0)
