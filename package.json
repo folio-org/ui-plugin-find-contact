@@ -27,7 +27,8 @@
     "test:unit": "jest --ci --coverage && yarn run test:unit:report",
     "test:unit:report": "cp -r ./artifacts/coverage-jest ./artifacts/coverage",
     "test:e2e": "yarn stripes test karma --karma.singleRun --karma.browsers ChromeDocker",
-    "test": "yarn run test:unit && yarn run test:e2e"
+    "test": "yarn run test:unit && yarn run test:e2e",
+    "formatjs-compile": "formatjs compile-folder --ast --format simple ./translations/ui-plugin-find-contact ./translations/ui-plugin-find-contact/compiled"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.13.9",
@@ -38,6 +39,7 @@
     "@folio/eslint-config-stripes": "^5.0.0",
     "@folio/stripes": "^6.0.0",
     "@folio/stripes-cli": "^2.0.0",
+    "@formatjs/cli": "^4.2.16",
     "@testing-library/dom": "^7.29.6",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
