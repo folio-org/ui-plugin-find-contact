@@ -2,6 +2,8 @@
 
 ## (IN PROGRESS)
 
+* increment stripes to v7. Refs UIPFCONT-19.
+
 ## [2.4.0](https://github.com/folio-org/ui-plugin-find-contact/tree/v2.4.0) (2021-06-16)
 [Full Changelog](https://github.com/folio-org/ui-plugin-find-contact/compare/v2.3.0...v2.4.0)
 
