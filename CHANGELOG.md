@@ -2,6 +2,8 @@
 
 ## (IN PROGRESS)
 
+* Replace `babel-eslint` with `@babel/eslint-parser`. Refs UIPFCONT-24.
+
 ## [3.1.0](https://github.com/folio-org/ui-plugin-find-contact/tree/v3.1.0) (2022-03-01)
 [Full Changelog](https://github.com/folio-org/ui-plugin-find-contact/compare/v3.0.0...v3.1.0)
 
