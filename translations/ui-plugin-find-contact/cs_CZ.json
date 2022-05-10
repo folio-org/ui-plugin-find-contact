@@ -1,7 +1,7 @@
 {
     "button.addContact": "Add contact",
-    "meta.title": "Add (assign) 'contact person' to organization (plugin)",
-    "meta.pluginTitle": "Contacts",
+    "meta.title": "Přidat (přiřadit) \"kontaktní osobu\" do organizace (plugin)",
+    "meta.pluginTitle": "Kontakty",
     "modal.title": "Add contacts",
     "contact.status": "Status",
     "contact.status.active": "Active",
