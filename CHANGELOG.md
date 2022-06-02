@@ -2,6 +2,9 @@
 
 ## (IN PROGRESS)
 
+## [3.1.1](https://github.com/folio-org/ui-plugin-find-contact/tree/v3.1.1) (2022-06-02)
+[Full Changelog](https://github.com/folio-org/ui-plugin-find-contact/compare/v3.1.0...v3.1.1)
+
 * Backport recent zh_TW translations. Refs UIPFCONT-27.
 
 ## [3.1.0](https://github.com/folio-org/ui-plugin-find-contact/tree/v3.1.0) (2022-03-01)
