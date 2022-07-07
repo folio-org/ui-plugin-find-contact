@@ -2,6 +2,9 @@
 
 ## (IN PROGRESS)
 
+## [3.2.0](https://github.com/folio-org/ui-plugin-find-contact/tree/v3.2.0) (2022-07-07)
+[Full Changelog](https://github.com/folio-org/ui-plugin-find-contact/compare/v3.1.0...v3.2.0)
+
 * Replace `babel-eslint` with `@babel/eslint-parser`. Refs UIPFCONT-24.
 
 ## [3.1.0](https://github.com/folio-org/ui-plugin-find-contact/tree/v3.1.0) (2022-03-01)
