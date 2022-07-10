@@ -28,6 +28,7 @@
     "test:unit:report": "cp -r ./artifacts/coverage-jest ./artifacts/coverage",
     "test:e2e": "yarn stripes test karma --karma.singleRun --karma.browsers ChromeDocker",
     "test": "yarn run test:unit",
+    "build-mod-descriptor": "stripes mod descriptor --full --strict | jq '.[]' > module-descriptor.json ",
     "formatjs-compile": "formatjs compile-folder --ast --format simple ./translations/ui-plugin-find-contact ./translations/ui-plugin-find-contact/compiled"
   },
   "devDependencies": {
