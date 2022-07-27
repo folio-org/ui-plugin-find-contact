@@ -1,14 +1,14 @@
 {
-    "button.addContact": "Add contact",
+    "button.addContact": "Přidejte kontakt",
     "meta.title": "Přidat (přiřadit) \"kontaktní osobu\" do organizace (plugin)",
     "meta.pluginTitle": "Kontakty",
     "modal.title": "Add contacts",
-    "contact.status": "Status",
-    "contact.status.active": "Active",
-    "contact.status.inactive": "Inactive",
-    "contact.name": "Name",
-    "contact.categories": "Category",
+    "contact.status": "Stav",
+    "contact.status.active": "Aktivní",
+    "contact.status.inactive": "Neaktivní",
+    "contact.name": "Název",
+    "contact.categories": "Kategorie",
     "button.cancel": "Zrušit",
-    "button.save": "Save",
+    "button.save": "Uložit",
     "totalSelected": "Total selected: {count}"
 }
