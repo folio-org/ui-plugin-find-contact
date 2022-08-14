@@ -81,9 +81,10 @@ const PluginFindContacts = ({ addContacts, isMultiSelect, renderNewContactBtn, .
       <ContactsListFilters
         activeFilters={activeFilters}
         applyFilters={applyFilters}
+        disabled={isLoading}
       />
     );
-  }, []);
+  }, [isLoading]);
 
   return (
     <FindRecords

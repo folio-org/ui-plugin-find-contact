@@ -17,6 +17,7 @@ import { useCategories } from '../hooks';
 export const ContactsListFilters = ({
   activeFilters,
   applyFilters,
+  disabled,
 }) => {
   const {
     categories,
@@ -58,4 +59,5 @@ export const ContactsListFilters = ({
 ContactsListFilters.propTypes = {
   activeFilters: PropTypes.object.isRequired,
   applyFilters: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
 };
