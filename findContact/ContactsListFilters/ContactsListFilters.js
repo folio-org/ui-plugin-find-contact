@@ -37,6 +37,7 @@ export const ContactsListFilters = ({
     <AccordionSet>
       <AcqCheckboxFilter
         id={CONTACTS_FILTERS.status}
+        disabled={disabled}
         activeFilters={activeFilters[CONTACTS_FILTERS.status]}
         labelId="ui-plugin-find-contact.contact.status"
         name={CONTACTS_FILTERS.status}
@@ -45,10 +46,10 @@ export const ContactsListFilters = ({
       />
       <AcqCheckboxFilter
         id={CONTACTS_FILTERS.categories}
+        disabled={disabled || isLoading}
         activeFilters={activeFilters[CONTACTS_FILTERS.categories]}
         labelId="ui-plugin-find-contact.contact.categories"
         name={CONTACTS_FILTERS.categories}
-        disabled={isLoading}
         onChange={adaptedApplyFilters}
         options={categoriesOptions}
       />
