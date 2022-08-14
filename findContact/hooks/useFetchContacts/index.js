@@ -1,0 +1,1 @@
+export { useFetchContacts } from './useFetchContacts';
