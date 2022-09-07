@@ -10,5 +10,5 @@
     "contact.categories": "Kategorie",
     "button.cancel": "Zrušit",
     "button.save": "Uložit",
-    "totalSelected": "Total selected: {count}"
+    "totalSelected": "Celkem vybráno: {count}"
 }
