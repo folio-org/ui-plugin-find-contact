@@ -2,6 +2,9 @@
 
 ## (IN PROGRESS)
 
+## [3.3.0](https://github.com/folio-org/ui-plugin-find-contact/tree/v3.3.0) (2022-10-21)
+[Full Changelog](https://github.com/folio-org/ui-plugin-find-contact/compare/v3.2.0...v3.3.0)
+
 * Find a contact - Implement MCL Next/Previous pagination. Refs UIPFCONT-29.
 
 ## [3.2.0](https://github.com/folio-org/ui-plugin-find-contact/tree/v3.2.0) (2022-07-07)
