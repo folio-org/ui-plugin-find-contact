@@ -2,6 +2,8 @@
 
 ## (IN PROGRESS)
 
+* *BREAKING*: Update `@folio/stripes` to `8.0.0`. Refs UIPFCONT-31.
+
 ## [3.3.0](https://github.com/folio-org/ui-plugin-find-contact/tree/v3.3.0) (2022-10-21)
 [Full Changelog](https://github.com/folio-org/ui-plugin-find-contact/compare/v3.2.0...v3.3.0)
 
