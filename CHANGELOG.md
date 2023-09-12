@@ -2,6 +2,8 @@
 
 ## (IN PROGRESS)
 
+* *BREAKING* bump `react-intl` to `v6.4.4`. Refs UIPFCONT-35.
+
 ## [4.0.0](https://github.com/folio-org/ui-plugin-find-contact/tree/v4.0.0) (2023-02-17)
 [Full Changelog](https://github.com/folio-org/ui-plugin-find-contact/compare/v3.3.0...v4.0.0)
 
