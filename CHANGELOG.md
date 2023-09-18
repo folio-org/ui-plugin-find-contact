@@ -2,6 +2,8 @@
 
 ## (IN PROGRESS)
 
+* Upgrade `Node.js` to `18` version in GitHub Actions. Refs UIPFCONT-34.
+
 ## [4.0.0](https://github.com/folio-org/ui-plugin-find-contact/tree/v4.0.0) (2023-02-17)
 [Full Changelog](https://github.com/folio-org/ui-plugin-find-contact/compare/v3.3.0...v4.0.0)
 
