@@ -1,8 +1,9 @@
-import user from '@testing-library/user-event';
-import { act, render, screen } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { useFetchContacts } from './hooks';
 
+import user from '@folio/jest-config-stripes/testing-library/user-event';
+import { render, screen } from '@folio/jest-config-stripes/testing-library/react';
+
+import { useFetchContacts } from './hooks';
 import PluginFindContacts from './PluginFindContacts';
 
 jest.mock('@folio/stripes-acq-components/lib/AcqList/hooks/useFiltersToogle', () => ({
@@ -63,7 +64,7 @@ describe('PluginFindContacts component', () => {
   it('should render plugin modal when \'Add contact\' button was clicked', async () => {
     renderPluginFindContacts();
 
-    await act(async () => user.click(screen.getByText('ui-plugin-find-contact.button.addContact')));
+    await user.click(screen.getByText('ui-plugin-find-contact.button.addContact'));
 
     expect(screen.getByText('ui-plugin-find-contact.modal.title')).toBeInTheDocument();
   });

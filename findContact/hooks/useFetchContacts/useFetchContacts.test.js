@@ -1,9 +1,7 @@
-import { renderHook } from '@testing-library/react-hooks';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
-import {
-  useOkapiKy,
-} from '@folio/stripes/core';
+import { act, renderHook } from '@folio/jest-config-stripes/testing-library/react';
+import { useOkapiKy } from '@folio/stripes/core';
 
 import { useFetchContacts } from './useFetchContacts';
 import { CONTACTS_API } from '../../api';
@@ -53,9 +51,11 @@ describe('useFetchContacts', () => {
   it('should fetch contacts', async () => {
     const { result } = renderHook(() => useFetchContacts(), { wrapper });
 
-    await result.current.fetchContacts({
-      searchParams: { sorting: 'name' },
-      offset: 30,
+    await act(async () => {
+      await result.current.fetchContacts({
+        searchParams: { sorting: 'name' },
+        offset: 30,
+      });
     });
 
     expect(getMock).toHaveBeenCalled();
