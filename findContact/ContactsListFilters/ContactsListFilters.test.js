@@ -1,6 +1,7 @@
-import user from '@testing-library/user-event';
-import { render, screen } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from 'react-query';
+
+import user from '@folio/jest-config-stripes/testing-library/user-event';
+import { render, screen } from '@folio/jest-config-stripes/testing-library/react';
 
 import { useCategories } from '../hooks';
 import { ContactsListFilters } from './ContactsListFilters';
@@ -54,10 +55,10 @@ describe('ContactsListFilters', () => {
     expect(screen.getByText('ui-plugin-find-contact.contact.categories')).toBeInTheDocument();
   });
 
-  it('should call \'applyFilters\' when a filter was applied', () => {
+  it('should call \'applyFilters\' when a filter was applied', async () => {
     renderContactsListFilters();
 
-    user.click(screen.getByText(categories[0].value));
+    await user.click(screen.getByText(categories[0].value));
 
     expect(defaultProps.applyFilters).toHaveBeenCalled();
   });

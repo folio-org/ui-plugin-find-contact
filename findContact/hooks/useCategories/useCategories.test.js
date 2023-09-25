@@ -1,6 +1,6 @@
-import { renderHook } from '@testing-library/react-hooks';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
+import { renderHook, waitFor } from '@folio/jest-config-stripes/testing-library/react';
 import { useOkapiKy } from '@folio/stripes/core';
 
 import { useCategories } from './useCategories';
@@ -30,9 +30,9 @@ describe('useCategories', () => {
   });
 
   it('should fetch categories', async () => {
-    const { result, waitFor } = renderHook(() => useCategories(), { wrapper });
+    const { result } = renderHook(() => useCategories(), { wrapper });
 
-    await waitFor(() => !result.current.isLoading);
+    await waitFor(() => expect(result.current.isLoading).toBeFalsy());
 
     expect(result.current.categories).toEqual(categories);
   });

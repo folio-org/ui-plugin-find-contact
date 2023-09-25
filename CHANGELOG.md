@@ -1,6 +1,9 @@
 # Change history for ui-plugin-find-contact
 
-## (IN PROGRESS)
+## (5.0.0 IN PROGRESS)
+
+* Upgrade `Node.js` to `18` version in GitHub Actions. Refs UIPFCONT-34.
+* **BREAKING:** Upgrade `React` to `18` version. Refs UIPFCONT-33.
 
 * *BREAKING* bump `react-intl` to `v6.4.4`. Refs UIPFCONT-35.
 
