@@ -1,10 +1,12 @@
 # Change history for ui-plugin-find-contact
 
-## (5.0.0 IN PROGRESS)
+## (5.1.0 IN PROGRESS)
+
+## [5.0.0](https://github.com/folio-org/ui-plugin-find-contact/tree/v5.0.0) (2023-10-12)
+[Full Changelog](https://github.com/folio-org/ui-plugin-find-contact/compare/v4.0.0...v5.0.0)
 
 * Upgrade `Node.js` to `18` version in GitHub Actions. Refs UIPFCONT-34.
-* **BREAKING:** Upgrade `React` to `18` version. Refs UIPFCONT-33.
-
+* *BREAKING:* Upgrade `React` to `18` version. Refs UIPFCONT-33.
 * *BREAKING* bump `react-intl` to `v6.4.4`. Refs UIPFCONT-35.
 
 ## [4.0.0](https://github.com/folio-org/ui-plugin-find-contact/tree/v4.0.0) (2023-02-17)
