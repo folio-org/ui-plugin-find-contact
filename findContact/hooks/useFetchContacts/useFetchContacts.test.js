@@ -3,8 +3,11 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { act, renderHook } from '@folio/jest-config-stripes/testing-library/react';
 import { useOkapiKy } from '@folio/stripes/core';
 
+import {
+  CONTACTS_API,
+  PRIVILEGED_CONTACT_URL,
+} from '../../api';
 import { useFetchContacts } from './useFetchContacts';
-import { CONTACTS_API } from '../../api';
 
 jest.mock('@folio/stripes/core', () => ({
   ...jest.requireActual('@folio/stripes/core'),
@@ -37,6 +40,14 @@ const getMock = jest.fn((api) => ({
   ),
 }));
 
+const getPrivilegedContactsMock = jest.fn((api) => ({
+  json: () => Promise.resolve(
+    api === PRIVILEGED_CONTACT_URL
+      ? { contacts, totalRecords: contacts.length }
+      : { categories, totalRecords: categories.length },
+  ),
+}));
+
 describe('useFetchContacts', () => {
   beforeEach(() => {
     getMock.mockClear();
@@ -59,5 +70,40 @@ describe('useFetchContacts', () => {
     });
 
     expect(getMock).toHaveBeenCalled();
+  });
+
+  it('should fetch contacts from privileged contacts API', async () => {
+    const { result } = renderHook(() => useFetchContacts({ isPrivilegedContactEnabled: true }), { wrapper });
+
+    await act(async () => {
+      await result.current.fetchContacts({
+        searchParams: { sorting: 'name' },
+        offset: 30,
+      });
+    });
+
+    expect(getMock).toHaveBeenCalledWith('organizations-storage/privileged-contacts', expect.anything());
+  });
+
+  it('should filter out contacts within array of `selectedContactIds`', async () => {
+    useOkapiKy
+      .mockClear()
+      .mockReturnValue({
+        get: getPrivilegedContactsMock,
+      });
+
+    const { result } = renderHook(() => useFetchContacts({ isPrivilegedContactEnabled: true, selectedContactIds: ['id'] }), { wrapper });
+
+    let users = [];
+
+    await act(async () => {
+      users = await result.current.fetchContacts({
+        searchParams: { sorting: 'name' },
+        offset: 30,
+      });
+    });
+
+    expect(getPrivilegedContactsMock).toHaveBeenCalled();
+    expect(users.contacts).toEqual([]);
   });
 });
