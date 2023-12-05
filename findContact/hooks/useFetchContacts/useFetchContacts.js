@@ -12,9 +12,13 @@ import {
   PLUGIN_RESULT_COUNT_INCREMENT,
 } from '@folio/stripes-acq-components';
 
-import { CATEGORIES_API, CONTACTS_API } from '../../api';
+import {
+  CATEGORIES_API,
+  CONTACTS_API,
+  PRIVILEGED_CONTACT_URL,
+} from '../../api';
 import { CONTACTS_FILTERS } from '../../constants';
-import { transformCategoryIdsToLables } from '../../utils';
+import { transformCategoryIdsToLabels } from '../../utils';
 
 const SORT_MAP = {
   name: 'lastName firstName',
@@ -55,7 +59,7 @@ const buildContactsQuery = searchParams => {
   return connectQuery(filtersQuery, sortingQuery);
 };
 
-export const useFetchContacts = () => {
+export const useFetchContacts = ({ isPrivilegedContactEnabled = false, selectedContactIds = [] }) => {
   const ky = useOkapiKy();
 
   const {
@@ -66,6 +70,7 @@ export const useFetchContacts = () => {
       limit = PLUGIN_RESULT_COUNT_INCREMENT,
       offset = 0,
     }) => {
+      const contactsURL = isPrivilegedContactEnabled ? PRIVILEGED_CONTACT_URL : CONTACTS_API;
       const contactsQuery = buildContactsQuery(searchParams);
       const builtSearchParams = {
         query: contactsQuery,
@@ -73,10 +78,7 @@ export const useFetchContacts = () => {
         offset,
       };
 
-      const {
-        contacts = [],
-        totalRecords,
-      } = await ky.get(CONTACTS_API, { searchParams: { ...builtSearchParams } }).json();
+      const { contacts = [] } = await ky.get(contactsURL, { searchParams: { ...builtSearchParams } }).json();
 
       const categoryIds = uniq(flatMap(contacts, ({ categories }) => categories));
       const categoriesResponse = await batchRequest(
@@ -84,15 +86,23 @@ export const useFetchContacts = () => {
         categoryIds,
       );
 
+      const filteredContacts = contacts.reduce((acc, contact) => {
+        if (!selectedContactIds.includes(contact.id)) {
+          acc.push({
+            ...contact,
+            categoryLabels: transformCategoryIdsToLabels(
+              flatMap(categoriesResponse, ({ categories }) => categories),
+              contact.categories,
+            ),
+          });
+        }
+
+        return acc;
+      }, []);
+
       return {
-        contacts: contacts.map(contact => ({
-          ...contact,
-          categoryLabels: transformCategoryIdsToLables(
-            flatMap(categoriesResponse, ({ categories }) => categories),
-            contact.categories,
-          ),
-        })),
-        totalRecords,
+        contacts: filteredContacts,
+        totalRecords: filteredContacts.length,
       };
     },
   });

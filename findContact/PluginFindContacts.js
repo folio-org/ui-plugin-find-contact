@@ -40,14 +40,21 @@ const columnMapping = {
 
 const INIT_PAGINATION = { limit: PLUGIN_RESULT_COUNT_INCREMENT, offset: 0 };
 
-const PluginFindContacts = ({ addContacts, isMultiSelect, renderNewContactBtn, ...rest }) => {
+const PluginFindContacts = ({
+  addContacts,
+  isMultiSelect,
+  isPrivilegedContactEnabled,
+  renderNewContactBtn,
+  selectedContactIds,
+  ...rest
+}) => {
   const [totalCount, setTotalCount] = useState(0);
   const [records, setRecords] = useState([]);
   const [searchParams, setSearchParams] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [pagination, setPagination] = useState(INIT_PAGINATION);
 
-  const { fetchContacts } = useFetchContacts();
+  const { fetchContacts } = useFetchContacts({ isPrivilegedContactEnabled, selectedContactIds });
 
   const refreshRecords = useCallback((filters) => {
     setIsLoading(true);
@@ -120,6 +127,8 @@ PluginFindContacts.propTypes = {
   addContacts: PropTypes.func,
   renderNewContactBtn: PropTypes.func,
   isMultiSelect: PropTypes.bool,
+  isPrivilegedContactEnabled: PropTypes.bool,
+  selectedContactIds: PropTypes.arrayOf(PropTypes.string),
 };
 
 PluginFindContacts.defaultProps = {
@@ -128,6 +137,8 @@ PluginFindContacts.defaultProps = {
   addContacts: noop,
   renderNewContactBtn: noop,
   isMultiSelect: true,
+  isPrivilegedContactEnabled: false,
+  selectedContactIds: [],
 };
 
 export default PluginFindContacts;

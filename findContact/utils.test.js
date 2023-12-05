@@ -1,4 +1,4 @@
-import { transformCategoryIdsToLables } from './utils';
+import { transformCategoryIdsToLabels } from './utils';
 
 const categories = [
   { id: '01', value: 'category-01' },
@@ -8,15 +8,15 @@ const categories = [
 
 const categoriesIds = ['01', '02', '03'];
 
-describe('transformCategoryIdsToLables fn', () => {
+describe('transformCategoryIdsToLabels fn', () => {
   it('should return labels', () => {
-    const labels = transformCategoryIdsToLables(categories, categoriesIds);
+    const labels = transformCategoryIdsToLabels(categories, categoriesIds);
 
     expect(labels).toBe('category-01, category-02, category-03');
   });
 
   it('should return empty string', () => {
-    const labels = transformCategoryIdsToLables(categories);
+    const labels = transformCategoryIdsToLabels(categories);
 
     expect(labels).toBe('');
   });
