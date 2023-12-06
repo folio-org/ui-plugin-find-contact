@@ -84,26 +84,4 @@ describe('useFetchContacts', () => {
 
     expect(getMock).toHaveBeenCalledWith('organizations-storage/privileged-contacts', expect.anything());
   });
-
-  it('should filter out contacts within array of `selectedContactIds`', async () => {
-    useOkapiKy
-      .mockClear()
-      .mockReturnValue({
-        get: getPrivilegedContactsMock,
-      });
-
-    const { result } = renderHook(() => useFetchContacts({ isPrivilegedContactEnabled: true, selectedContactIds: ['id'] }), { wrapper });
-
-    let users = [];
-
-    await act(async () => {
-      users = await result.current.fetchContacts({
-        searchParams: { sorting: 'name' },
-        offset: 30,
-      });
-    });
-
-    expect(getPrivilegedContactsMock).toHaveBeenCalled();
-    expect(users.contacts).toEqual([]);
-  });
 });

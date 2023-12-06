@@ -59,7 +59,7 @@ const buildContactsQuery = searchParams => {
   return connectQuery(filtersQuery, sortingQuery);
 };
 
-export const useFetchContacts = ({ isPrivilegedContactEnabled = false, selectedContactIds = [] } = {}) => {
+export const useFetchContacts = ({ isPrivilegedContactEnabled = false }) => {
   const ky = useOkapiKy();
 
   const {
@@ -78,7 +78,10 @@ export const useFetchContacts = ({ isPrivilegedContactEnabled = false, selectedC
         offset,
       };
 
-      const { contacts = [] } = await ky.get(contactsURL, { searchParams: { ...builtSearchParams } }).json();
+      const {
+        contacts = [],
+        totalRecords,
+      } = await ky.get(contactsURL, { searchParams: { ...builtSearchParams } }).json();
 
       const categoryIds = uniq(flatMap(contacts, ({ categories }) => categories));
       const categoriesResponse = await batchRequest(
@@ -86,23 +89,15 @@ export const useFetchContacts = ({ isPrivilegedContactEnabled = false, selectedC
         categoryIds,
       );
 
-      const filteredContacts = contacts.reduce((acc, contact) => {
-        if (!selectedContactIds.includes(contact.id)) {
-          acc.push({
-            ...contact,
-            categoryLabels: transformCategoryIdsToLabels(
-              flatMap(categoriesResponse, ({ categories }) => categories),
-              contact.categories,
-            ),
-          });
-        }
-
-        return acc;
-      }, []);
-
       return {
-        contacts: filteredContacts,
-        totalRecords: filteredContacts.length,
+        contacts: contacts.map(contact => ({
+          ...contact,
+          categoryLabels: transformCategoryIdsToLabels(
+            flatMap(categoriesResponse, ({ categories }) => categories),
+            contact.categories,
+          ),
+        })),
+        totalRecords,
       };
     },
   });

@@ -45,7 +45,6 @@ const PluginFindContacts = ({
   isMultiSelect,
   isPrivilegedContactEnabled,
   renderNewContactBtn,
-  selectedContactIds,
   ...rest
 }) => {
   const [totalCount, setTotalCount] = useState(0);
@@ -54,7 +53,7 @@ const PluginFindContacts = ({
   const [isLoading, setIsLoading] = useState(false);
   const [pagination, setPagination] = useState(INIT_PAGINATION);
 
-  const { fetchContacts } = useFetchContacts({ isPrivilegedContactEnabled, selectedContactIds });
+  const { fetchContacts } = useFetchContacts({ isPrivilegedContactEnabled });
 
   const refreshRecords = useCallback((filters) => {
     setIsLoading(true);
@@ -128,7 +127,6 @@ PluginFindContacts.propTypes = {
   renderNewContactBtn: PropTypes.func,
   isMultiSelect: PropTypes.bool,
   isPrivilegedContactEnabled: PropTypes.bool,
-  selectedContactIds: PropTypes.arrayOf(PropTypes.string),
 };
 
 PluginFindContacts.defaultProps = {
@@ -138,7 +136,6 @@ PluginFindContacts.defaultProps = {
   renderNewContactBtn: noop,
   isMultiSelect: true,
   isPrivilegedContactEnabled: false,
-  selectedContactIds: [],
 };
 
 export default PluginFindContacts;
