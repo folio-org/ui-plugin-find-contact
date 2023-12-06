@@ -59,7 +59,7 @@ const buildContactsQuery = searchParams => {
   return connectQuery(filtersQuery, sortingQuery);
 };
 
-export const useFetchContacts = ({ isPrivilegedContactEnabled = false }) => {
+export const useFetchContacts = ({ isPrivilegedContactEnabled = false } = {}) => {
   const ky = useOkapiKy();
 
   const {
