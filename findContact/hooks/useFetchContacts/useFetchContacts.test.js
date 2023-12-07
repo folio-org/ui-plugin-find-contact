@@ -3,10 +3,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { act, renderHook } from '@folio/jest-config-stripes/testing-library/react';
 import { useOkapiKy } from '@folio/stripes/core';
 
-import {
-  CONTACTS_API,
-  PRIVILEGED_CONTACT_URL,
-} from '../../api';
+import { CONTACTS_API } from '../../api';
 import { useFetchContacts } from './useFetchContacts';
 
 jest.mock('@folio/stripes/core', () => ({
@@ -35,14 +32,6 @@ const wrapper = ({ children }) => (
 const getMock = jest.fn((api) => ({
   json: () => Promise.resolve(
     api === CONTACTS_API
-      ? { contacts, totalRecords: contacts.length }
-      : { categories, totalRecords: categories.length },
-  ),
-}));
-
-const getPrivilegedContactsMock = jest.fn((api) => ({
-  json: () => Promise.resolve(
-    api === PRIVILEGED_CONTACT_URL
       ? { contacts, totalRecords: contacts.length }
       : { categories, totalRecords: categories.length },
   ),
