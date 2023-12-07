@@ -3,8 +3,8 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { act, renderHook } from '@folio/jest-config-stripes/testing-library/react';
 import { useOkapiKy } from '@folio/stripes/core';
 
-import { useFetchContacts } from './useFetchContacts';
 import { CONTACTS_API } from '../../api';
+import { useFetchContacts } from './useFetchContacts';
 
 jest.mock('@folio/stripes/core', () => ({
   ...jest.requireActual('@folio/stripes/core'),
@@ -59,5 +59,18 @@ describe('useFetchContacts', () => {
     });
 
     expect(getMock).toHaveBeenCalled();
+  });
+
+  it('should fetch contacts from privileged contacts API', async () => {
+    const { result } = renderHook(() => useFetchContacts({ isPrivilegedContactEnabled: true }), { wrapper });
+
+    await act(async () => {
+      await result.current.fetchContacts({
+        searchParams: { sorting: 'name' },
+        offset: 30,
+      });
+    });
+
+    expect(getMock).toHaveBeenCalledWith('organizations-storage/privileged-contacts', expect.anything());
   });
 });
