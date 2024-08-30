@@ -1,14 +1,14 @@
 {
-    "button.addContact": "Add contact",
-    "meta.title": "Add (assign) 'contact person' to organization (plugin)",
-    "meta.pluginTitle": "Contacts",
-    "modal.title": "Add contacts",
+    "button.addContact": "Contact toevoegen",
+    "meta.title": "Toevoegen (toewijzen) van 'contactpersoon' aan organisatie (plugin)",
+    "meta.pluginTitle": "Contacten",
+    "modal.title": "Contacten toevoegen",
     "contact.status": "Status",
-    "contact.status.active": "Active",
-    "contact.status.inactive": "Inactive",
-    "contact.name": "Name",
-    "contact.categories": "Category",
-    "button.cancel": "Cancel",
-    "button.save": "Save",
-    "totalSelected": "Total selected: {count}"
+    "contact.status.active": "Actief",
+    "contact.status.inactive": "Inactief",
+    "contact.name": "Naam",
+    "contact.categories": "Categorie",
+    "button.cancel": "Annuleren",
+    "button.save": "Opslaan",
+    "totalSelected": "Totaal geselecteerd: {count}"
 }
