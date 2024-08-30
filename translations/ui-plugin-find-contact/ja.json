@@ -5,10 +5,10 @@
     "modal.title": "連絡先を追加",
     "contact.status": "ステータス",
     "contact.status.active": "有効",
-    "contact.status.inactive": "非アクティブ",
+    "contact.status.inactive": "無効",
     "contact.name": "名称",
     "contact.categories": "カテゴリー",
     "button.cancel": "キャンセル",
     "button.save": "保存",
-    "totalSelected": "Total selected: {count}"
+    "totalSelected": "選択済合計:  {count}"
 }
