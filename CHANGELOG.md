@@ -1,8 +1,10 @@
 # Change history for ui-plugin-find-contact
 
-## (5.3.0 IN PROGRESS)
+## (6.0.0 IN PROGRESS)
 
 * Migrate to shared GA workflows. Refs UIPFCONT-42.
+* *BREAKING* Migrate stripes dependencies to their Sunflower versions. Refs UIPFCONT-43.
+* *BREAKING* Migrate `react-intl` to v7. Refs UIPFCONT-44.
 
 ## [5.2.0](https://github.com/folio-org/ui-plugin-find-contact/tree/v5.2.0) (2024-10-30)
 [Full Changelog](https://github.com/folio-org/ui-plugin-find-contact/compare/v5.1.0...v5.2.0)
