@@ -49,21 +49,21 @@
     "miragejs": "^0.1.32",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-intl": "^6.4.4",
+    "react-intl": "^7.1.5",
     "react-query": "^3.6.0",
     "react-router-dom": "^5.2.0",
     "regenerator-runtime": "^0.13.3"
   },
   "dependencies": {
-    "@folio/stripes-acq-components": "~6.0.0",
+    "@folio/stripes-acq-components": "~7.0.0",
     "lodash": "^4.17.11",
     "prop-types": "^15.6.0"
   },
   "peerDependencies": {
-    "@folio/stripes": "^9.0.0",
+    "@folio/stripes": "^10.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-intl": "^6.4.4",
+    "react-intl": "^7.1.5",
     "react-router-dom": "^5.2.0"
   }
 }
