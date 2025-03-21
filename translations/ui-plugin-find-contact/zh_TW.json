@@ -10,5 +10,5 @@
     "contact.categories": "類別",
     "button.cancel": "取消",
     "button.save": "儲存",
-    "totalSelected": "已選總數：{count}"
+    "totalSelected": "已選總數 : {count}"
 }

@@ -1,6 +1,6 @@
 {
     "button.addContact": "添加联系人",
-    "meta.title": "向组织添加（分配）“联系人”（插件）",
+    "meta.title": "向组织添加 : 分配 ) “联系人” : 插件 ) ",
     "meta.pluginTitle": "联系人",
     "modal.title": "添加联系人",
     "contact.status": "状态",
@@ -10,5 +10,5 @@
     "contact.categories": "类别",
     "button.cancel": "取消",
     "button.save": "保存",
-    "totalSelected": "已选总数： {count}"
+    "totalSelected": "已选总数 :  {count}"
 }
