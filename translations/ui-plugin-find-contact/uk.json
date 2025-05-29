@@ -8,7 +8,7 @@
     "contact.status.inactive": "Inactive",
     "contact.name": "Name",
     "contact.categories": "Category",
-    "button.cancel": "Cancel",
-    "button.save": "Save",
+    "button.cancel": "Скасувати",
+    "button.save": "Зберегти",
     "totalSelected": "Total selected: {count}"
 }
