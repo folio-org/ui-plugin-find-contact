@@ -1,14 +1,14 @@
 {
-    "button.addContact": "Add contact",
+    "button.addContact": "Додати контакт",
     "meta.title": "Додати (призначити) 'контактну особу' до організації (плагін)",
-    "meta.pluginTitle": "Contacts",
+    "meta.pluginTitle": "Контакти",
     "modal.title": "Додати контакти",
-    "contact.status": "Status",
-    "contact.status.active": "Active",
-    "contact.status.inactive": "Inactive",
-    "contact.name": "Name",
-    "contact.categories": "Category",
+    "contact.status": "Статус",
+    "contact.status.active": "Активно",
+    "contact.status.inactive": "Неактивно",
+    "contact.name": "Ім'я/Назва",
+    "contact.categories": "Категорія",
     "button.cancel": "Скасувати",
     "button.save": "Зберегти",
-    "totalSelected": "Total selected: {count}"
+    "totalSelected": "Всього вибрано: {count}"
 }
