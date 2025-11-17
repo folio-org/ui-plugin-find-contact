@@ -1,15 +1,16 @@
-import { useCallback, useState } from 'react';
+import get from 'lodash/get';
+import noop from 'lodash/noop';
 import PropTypes from 'prop-types';
+import { useCallback, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { get, noop } from 'lodash';
 
 import {
   FindRecords,
   PLUGIN_RESULT_COUNT_INCREMENT,
 } from '@folio/stripes-acq-components';
 
-import { useFetchContacts } from './hooks';
 import { ContactsListFilters } from './ContactsListFilters/ContactsListFilters';
+import { useFetchContacts } from './hooks';
 
 const idPrefix = 'uiPluginFindContacts-';
 const modalLabel = <FormattedMessage id="ui-plugin-find-contact.modal.title" />;
@@ -41,10 +42,12 @@ const columnMapping = {
 const INIT_PAGINATION = { limit: PLUGIN_RESULT_COUNT_INCREMENT, offset: 0 };
 
 const PluginFindContacts = ({
-  addContacts,
-  isMultiSelect,
-  isPrivilegedContactEnabled,
-  renderNewContactBtn,
+  addContacts = noop,
+  disabled = false,
+  isMultiSelect = true,
+  isPrivilegedContactEnabled = false,
+  renderNewContactBtn = noop,
+  searchLabel = <FormattedMessage id="ui-plugin-find-contact.button.addContact" />,
   ...rest
 }) => {
   const [totalCount, setTotalCount] = useState(0);
@@ -95,24 +98,25 @@ const PluginFindContacts = ({
   return (
     <FindRecords
       {...rest}
-      modalLabel={modalLabel}
-      resultsPaneTitle={resultsPaneTitle}
-      idPrefix={idPrefix}
-      columnWidths={columnWidths}
-      visibleColumns={visibleColumns}
       columnMapping={columnMapping}
-      resultsFormatter={resultsFormatter}
-      records={records}
-      totalCount={totalCount}
-      refreshRecords={refreshRecords}
-      onNeedMoreData={onNeedMoreData}
-      isMultiSelect={isMultiSelect}
+      columnWidths={columnWidths}
+      disabled={disabled}
+      idPrefix={idPrefix}
       isLoading={isLoading}
-      selectRecords={addContacts}
-      sortableColumns={sortableColumns}
+      isMultiSelect={isMultiSelect}
+      modalLabel={modalLabel}
+      onNeedMoreData={onNeedMoreData}
+      pagination={pagination}
+      records={records}
+      refreshRecords={refreshRecords}
       renderFilters={renderFilters}
       renderNewBtn={renderNewContactBtn}
-      pagination={pagination}
+      resultsFormatter={resultsFormatter}
+      resultsPaneTitle={resultsPaneTitle}
+      selectRecords={addContacts}
+      sortableColumns={sortableColumns}
+      totalCount={totalCount}
+      visibleColumns={visibleColumns}
     />
   );
 };
@@ -127,15 +131,6 @@ PluginFindContacts.propTypes = {
   renderNewContactBtn: PropTypes.func,
   isMultiSelect: PropTypes.bool,
   isPrivilegedContactEnabled: PropTypes.bool,
-};
-
-PluginFindContacts.defaultProps = {
-  disabled: false,
-  searchLabel: <FormattedMessage id="ui-plugin-find-contact.button.addContact" />,
-  addContacts: noop,
-  renderNewContactBtn: noop,
-  isMultiSelect: true,
-  isPrivilegedContactEnabled: false,
 };
 
 export default PluginFindContacts;
