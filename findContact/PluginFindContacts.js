@@ -113,6 +113,7 @@ const PluginFindContacts = ({
       renderNewBtn={renderNewContactBtn}
       resultsFormatter={resultsFormatter}
       resultsPaneTitle={resultsPaneTitle}
+      searchLabel={searchLabel}
       selectRecords={addContacts}
       sortableColumns={sortableColumns}
       totalCount={totalCount}
