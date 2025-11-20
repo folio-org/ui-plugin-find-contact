@@ -2,6 +2,8 @@
 
 ## (6.1.0 IN PROGRESS)
 
+* React v19: Refactor away from default props for functional components. Refs UIPFCONT-39.
+
 ## [6.0.0](https://github.com/folio-org/ui-plugin-find-contact/tree/v6.0.0) (2025-03-11)
 [Full Changelog](https://github.com/folio-org/ui-plugin-find-contact/compare/v5.2.0...v6.0.0)
 
