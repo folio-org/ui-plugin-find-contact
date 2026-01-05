@@ -1,14 +1,14 @@
 {
-    "button.addContact": "Add contact",
-    "meta.title": "Add (assign) 'contact person' to organization (plugin)",
-    "meta.pluginTitle": "Contacts",
-    "modal.title": "Add contacts",
-    "contact.status": "Status",
-    "contact.status.active": "Active",
-    "contact.status.inactive": "Inactive",
-    "contact.name": "Name",
-    "contact.categories": "Category",
-    "button.cancel": "Cancel",
-    "button.save": "Save",
-    "totalSelected": "Total selected: {count}"
+    "button.addContact": "Kişi ekle",
+    "meta.title": "Kuruluş (yada organizasyon) 'irtibat kişisi' ekle (atama) (Eklenti)",
+    "meta.pluginTitle": "İletişim",
+    "modal.title": "İletişim ekle",
+    "contact.status": "Durum",
+    "contact.status.active": "Aktif",
+    "contact.status.inactive": "Aktif değil",
+    "contact.name": "İsim",
+    "contact.categories": "Kategori",
+    "button.cancel": "İptal et",
+    "button.save": "Kaydet",
+    "totalSelected": "Toplam seçildi: {count}"
 }
