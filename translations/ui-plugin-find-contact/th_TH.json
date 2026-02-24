@@ -3,7 +3,7 @@
     "meta.title": "Add (assign) 'contact person' to organization (plugin)",
     "meta.pluginTitle": "Contacts",
     "modal.title": "Add contacts",
-    "contact.status": "Status",
+    "contact.status": "สถานะ",
     "contact.status.active": "Active",
     "contact.status.inactive": "Inactive",
     "contact.name": "Name",
